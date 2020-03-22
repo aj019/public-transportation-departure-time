@@ -5,7 +5,7 @@ import Home from './src/container/Home'
 const rootId = 'root'
 const root = document.getElementById(rootId)
 export const googleMapURL =
-  'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCK8olcHBnrwuIihenuSqP5wNQdmKuJ7VI'
+  'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCK8olcHBnrwuIihenuSqP5wNQdmKuJ7VI&libraries=places&region=UK'
 
 const loadingElement = <div />
 const containerElement = <div style={{height: '100vh'}} />
