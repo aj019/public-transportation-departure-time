@@ -9,7 +9,7 @@ const StyledDiv = styled.div`
   height: 80%;
 `
 
-const StyledHeader = styled.h1`
+const StyledHeader = styled.div`
   margin: 0px;
   height: 50px;
   border-bottom: 1px solid #333;
@@ -35,7 +35,6 @@ export default class BusStops extends Component {
   }
 
   render() {
-    console.log('BusStops', this.props.busStops)
     return (
       <StyledDiv>
         <StyledHeader>

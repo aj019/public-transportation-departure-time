@@ -58,6 +58,7 @@ export default class Departures extends Component {
           {this.props.departures.map((departure, i) => {
             return (
               <Card
+                key={i}
                 onClick={() => {
                   this.props.onDestinationSelected(departure.id)
                 }}
