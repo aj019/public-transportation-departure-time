@@ -17,6 +17,17 @@ const StyledSearchContainer = styled.div`
   flex-direction: row;
 `
 
+const StyledDropdownContainer = styled.div`
+  position: absolute;
+  border: 1px solid #000;
+`
+
+const StyledDropdown = styled.div`
+  border-bottom: 1px solid #333;
+  padding: 10px;
+  z-index: 10;
+`
+
 const StyledH1 = styled.h1`
   margin: 0;
 `
@@ -58,7 +69,7 @@ export default class Search extends Component {
                   })}
                 />
               </StyledSearchContainer>
-              <div className='autocomplete-dropdown-container'>
+              <StyledDropdownContainer className='autocomplete-dropdown-container'>
                 {loading && <div>Loading...</div>}
                 {suggestions.map((suggestion, i) => {
                   const className = suggestion.active
@@ -77,7 +88,7 @@ export default class Search extends Component {
                         cursor: 'pointer'
                       }
                   return (
-                    <div
+                    <StyledDropdown
                       key={i}
                       {...getSuggestionItemProps(suggestion, {
                         className,
@@ -85,10 +96,10 @@ export default class Search extends Component {
                       })}
                     >
                       <span>{suggestion.description}</span>
-                    </div>
+                    </StyledDropdown>
                   )
                 })}
-              </div>
+              </StyledDropdownContainer>
             </div>
           )}
         </PlacesAutoComplete>
