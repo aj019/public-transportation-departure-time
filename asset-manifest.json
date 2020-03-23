@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/public-transportation-departure-time/static/js/main.a476a7eb.chunk.js",
-    "main.js.map": "/public-transportation-departure-time/static/js/main.a476a7eb.chunk.js.map",
+    "main.js": "/public-transportation-departure-time/static/js/main.7655450a.chunk.js",
+    "main.js.map": "/public-transportation-departure-time/static/js/main.7655450a.chunk.js.map",
     "runtime-main.js": "/public-transportation-departure-time/static/js/runtime-main.486afc4a.js",
     "runtime-main.js.map": "/public-transportation-departure-time/static/js/runtime-main.486afc4a.js.map",
     "static/js/2.d162a52b.chunk.js": "/public-transportation-departure-time/static/js/2.d162a52b.chunk.js",
     "static/js/2.d162a52b.chunk.js.map": "/public-transportation-departure-time/static/js/2.d162a52b.chunk.js.map",
     "index.html": "/public-transportation-departure-time/index.html",
-    "precache-manifest.07e30e03e891db29c7b47b89edd702d0.js": "/public-transportation-departure-time/precache-manifest.07e30e03e891db29c7b47b89edd702d0.js",
+    "precache-manifest.b621751e80d45f024fbfe8711a18b616.js": "/public-transportation-departure-time/precache-manifest.b621751e80d45f024fbfe8711a18b616.js",
     "service-worker.js": "/public-transportation-departure-time/service-worker.js",
     "static/js/2.d162a52b.chunk.js.LICENSE.txt": "/public-transportation-departure-time/static/js/2.d162a52b.chunk.js.LICENSE.txt",
     "static/media/bus.svg": "/public-transportation-departure-time/static/media/bus.1484f0a2.svg"
@@ -15,6 +15,6 @@
   "entrypoints": [
     "static/js/runtime-main.486afc4a.js",
     "static/js/2.d162a52b.chunk.js",
-    "static/js/main.a476a7eb.chunk.js"
+    "static/js/main.7655450a.chunk.js"
   ]
 }

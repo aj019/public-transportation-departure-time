@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/public-transportation-departure-time/precache-manifest.07e30e03e891db29c7b47b89edd702d0.js"
+  "/public-transportation-departure-time/precache-manifest.b621751e80d45f024fbfe8711a18b616.js"
 );
 
 self.addEventListener('message', (event) => {
