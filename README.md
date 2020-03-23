@@ -1,3 +1,5 @@
+### You can try this project out at :- https://aj019.github.io/public-transportation-departure-time/
+
 This project uses Transport Api (https://www.transportapi.com/) and allows users to 
 1. Search For Nearby Bus Stops
 2. View Departures and Departure time
