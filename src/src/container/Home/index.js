@@ -24,6 +24,9 @@ const StyledDiv = styled.div`
   position: absolute;
   background: white;
   width: 400px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 `
 class Home extends Component {
   constructor() {
@@ -92,12 +95,14 @@ class Home extends Component {
       //   if(result.dat)
     } catch (e) {}
   }
-  componentDidMount() {
-    this.getBusStops()
+
+  onDepartureCancelled = () => {
+    this.setState({
+      departures: []
+    })
   }
 
   onDestinationSelected = async urlForRoute => {
-    console.log('Clicked', urlForRoute)
     try {
       const result = await axios.get(urlForRoute)
       console.log(result)
@@ -142,7 +147,8 @@ class Home extends Component {
     this.setState(
       {
         origin: latLang,
-        address: address
+        address: address,
+        departures: []
       },
       () => {
         this.getBusStops()
@@ -154,6 +160,10 @@ class Home extends Component {
     this.setState({
       address: data
     })
+  }
+
+  componentDidMount() {
+    this.getBusStops()
   }
 
   render() {
@@ -179,13 +189,12 @@ class Home extends Component {
           ))}
         </GoogleMap>
         <StyledDiv>
-          <div style={{marginTop: 20}}>
-            <Search
-              onInputChange={this.onInputChange}
-              handleSelect={this.handleSelect}
-              address={this.state.address}
-            />
-          </div>
+          <Search
+            onInputChange={this.onInputChange}
+            handleSelect={this.handleSelect}
+            address={this.state.address}
+          />
+
           {this.state.markers.length > 0 &&
             this.state.departures.length === 0 && (
               <BusStops
@@ -196,6 +205,7 @@ class Home extends Component {
           {this.state.departures.length > 0 && (
             <Departures
               departures={this.state.departures}
+              onDepartureCancelled={this.onDepartureCancelled}
               onDestinationSelected={this.onDestinationSelected}
             />
           )}
