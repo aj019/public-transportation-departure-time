@@ -13,6 +13,8 @@ import {
   FETCH_DIRECTIONS_SUCCESS
 } from '../constants/strings'
 
+import bus from '../images/bus.svg'
+
 function fetchBusStopsApiCall(origin) {
   return axios.get(
     `${BASE_URL}/places.json?type=bus_stop&lat=${origin.lat}&lon=${origin.lng}&app_key=c96bd60a6078bb1f13227063d1529bed&app_id=0fade918`
@@ -39,13 +41,17 @@ function* fetchBusStops(action) {
           selected: false,
           lat: stops[i].latitude,
           lng: stops[i].longitude,
-          animation: 2
+          animation: 2,
+          icon: '../images/bus.png'
         })
         markers.push(marker)
       }
 
       console.log('Saga successs')
-      yield put({type: FETCH_NEARBY_BUS_STOPS_SUCCESS, payload: markers})
+      yield put({
+        type: FETCH_NEARBY_BUS_STOPS_SUCCESS,
+        payload: {markers, origin: action.payload}
+      })
     }
   } catch (e) {
     console.log('Saga fail')
@@ -61,7 +67,14 @@ function* fetchDepartures(action) {
     )
     if (result.status === 200) {
       const departures = result.data.departures.all
-      yield put({type: FETCH_DEPARTURES_SUCCESS, payload: departures})
+      yield put({
+        type: FETCH_DEPARTURES_SUCCESS,
+        payload: {
+          departures,
+          markers: [marker],
+          origin: {lat: marker.lat, lng: marker.lng}
+        }
+      })
     }
   } catch (e) {
     yield put({type: FETCH_DEPARTURES_FAIL})
@@ -85,8 +98,7 @@ function* fetchDirections(action) {
             travelMode: google.maps.TravelMode.TRANSIT,
             transitOptions: {
               modes: [google.maps.TransitMode.BUS],
-              routingPreference:
-                google.maps.TransitRoutePreference.FEWER_TRANSFERS
+              routingPreference: google.maps.TransitRoutePreference.LESS_WALKING
             }
           },
           (result, status) => {

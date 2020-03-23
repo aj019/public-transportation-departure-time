@@ -20,6 +20,7 @@ import {
   SET_DEPARTURES,
   FETCH_DIRECTIONS
 } from '../../constants/strings'
+const defaultOrigin = {lat: 51.5073509, lng: 0.1123}
 
 const StyledDiv = styled.div`
   position: absolute;
@@ -33,22 +34,19 @@ class Home extends Component {
   constructor() {
     super()
     this.state = {
-      origin: {lat: 51.5073509, lng: 0.1123},
       directionService: new window.google.maps.DirectionsService(),
-      station: 'no bus stop selected',
-      getDepartures: false,
       zoom: 15,
       address: ''
     }
   }
 
   onDepartureCancelled = () => {
-    this.props.setDepartures([])
+    this.props.getNearbyBusStops(defaultOrigin)
   }
 
   onDestinationSelected = async urlForRoute => {
     this.props.getDirections({
-      origin: this.state.origin,
+      origin: this.props.origin,
       urlForRoute: urlForRoute,
       directionService: this.state.directionService
     })
@@ -59,11 +57,10 @@ class Home extends Component {
     const latLang = await getLatLng(results[0])
     this.setState(
       {
-        origin: latLang,
         address: address
       },
       () => {
-        this.props.getNearbyBusStops(this.state.origin)
+        this.props.getNearbyBusStops(latLang)
       }
     )
   }
@@ -75,27 +72,30 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.getNearbyBusStops(this.state.origin)
+    this.props.getNearbyBusStops(this.props.origin)
   }
 
   render() {
     const {markers, getDepartures, departures, directions} = this.props
+    console.log('directions', this.props.directions)
     return (
       <div
         className='MapsWrapper'
         style={{margin: 0, position: 'absolute', top: 0}}
       >
         <GoogleMap
-          center={this.state.origin}
+          center={this.props.origin}
           defaultZoom={16}
           options={{disableDefaultUI: true}}
         >
           {directions ? <DirectionsRenderer directions={directions} /> : null}
           {markers.map((marker, index) => (
             <Marker
+              title={marker.title}
               onClick={() => getDepartures(marker)}
               position={marker.position}
               key={index}
+              animation={marker.animation}
             />
           ))}
         </GoogleMap>
@@ -123,11 +123,12 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-  const {markers, departures, directions} = state
+  const {markers, departures, directions, origin} = state
   return {
     markers: markers,
     departures: departures,
-    directions: directions
+    directions: directions,
+    origin
   }
 }
 

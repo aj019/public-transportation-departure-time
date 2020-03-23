@@ -4,19 +4,31 @@ import {
   SET_DEPARTURES,
   FETCH_DIRECTIONS_SUCCESS
 } from '../constants/strings'
-
+const defaultOrigin = {lat: 51.5073509, lng: 0.1123}
 const initialState = {
   markers: [],
   departures: [],
-  directions: []
+  directions: [],
+  origin: defaultOrigin
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_NEARBY_BUS_STOPS_SUCCESS:
-      return Object.assign({}, state, {markers: action.payload, departures: []})
+      const {origin, markers} = action.payload
+      return Object.assign({}, state, {
+        markers: markers,
+        departures: [],
+        directions: null,
+        origin: origin
+      })
     case FETCH_DEPARTURES_SUCCESS:
-      return Object.assign({}, state, {departures: action.payload})
+      const {departures} = action.payload
+      return Object.assign({}, state, {
+        departures: departures,
+        markers: action.payload.markers,
+        origin: action.payload.origin
+      })
     case SET_DEPARTURES:
       return Object.assign({}, state, {departures: []})
     case FETCH_DIRECTIONS_SUCCESS:
