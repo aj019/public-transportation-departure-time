@@ -1,4 +1,5 @@
 {
+  "homepage": "http://aj019.github.io/public-transportation-departure-time/",
   "name": "real-time-transportation-service",
   "version": "0.1.0",
   "private": true,
@@ -7,6 +8,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "gh-pages": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-google-maps": "^9.4.5",
@@ -18,6 +20,8 @@
     "styled-components": "^5.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
