@@ -39,10 +39,6 @@ const StyledListContainer = styled.div`
 `
 
 export default class Departures extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   static propTypes = {
     departures: PropTypes.array,
     onDestinationSelected: PropTypes.func,

@@ -29,10 +29,6 @@ const StyledListContainer = styled.div`
 `
 
 export default class BusStops extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   static propTypes = {
     busStops: PropTypes.array,
     onStopSelected: PropTypes.func

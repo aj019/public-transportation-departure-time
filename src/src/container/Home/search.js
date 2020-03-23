@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
-import PlacesAutoComplete, {
-  geocodeByAddress,
-  getLatLng
-} from 'react-places-autocomplete'
+import PlacesAutoComplete from 'react-places-autocomplete'
 import PropTypes from 'prop-types'
 import Colors from '../../constants/colors'
-import Icon from '../../constants/icons'
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
@@ -31,11 +27,6 @@ const StyledInput = styled.input`
   box-sizing: border-box;
   margin-top: 10px;
   font-size: 1.2rem;
-`
-
-const StyledButton = styled.button`
-  border: none;
-  background: none;
 `
 
 export default class Search extends Component {

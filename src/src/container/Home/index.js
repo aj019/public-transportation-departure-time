@@ -3,7 +3,6 @@ import React, {Component} from 'react'
 import {
   GoogleMap,
   DirectionsRenderer,
-  DirectionsService,
   Marker,
   withGoogleMap,
   withScriptjs
@@ -16,8 +15,6 @@ import Search from './search'
 import styled from 'styled-components'
 import {geocodeByAddress, getLatLng} from 'react-places-autocomplete'
 
-const {SearchBox} = require('react-google-maps/lib/components/places/SearchBox')
-const someLatLng = {lat: 51.534121, lng: -0.006944}
 const baseUrl = 'http://transportapi.com/v3/uk'
 
 const StyledDiv = styled.div`
@@ -118,13 +115,12 @@ class Home extends Component {
             transitOptions: {
               modes: [google.maps.TransitMode.BUS],
               routingPreference:
-                google.maps.TransitRoutePreference.FEWER_TRANSFERS,
-              routingPreference: google.maps.TransitRoutePreference.LESS_WALKING
+                google.maps.TransitRoutePreference.FEWER_TRANSFERS
             }
           },
           (result, status) => {
             console.log('res sta', result, status)
-            if (status == google.maps.DirectionsStatus.OK) {
+            if (status === google.maps.DirectionsStatus.OK) {
               this.setState({
                 directions: result
               })
